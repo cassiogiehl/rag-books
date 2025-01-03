@@ -1,0 +1,29 @@
+services:
+  langchain-app:
+    image: langchain-app
+    volumes:
+      - .:/app
+    command:
+      "python3.13 app.py"
+    networks:
+      - llm-network
+
+#   ollama:
+#     image: ollama/ollama:latest
+#     ports:
+#       - "11434:11434"
+#     volumes:
+#       - ollama-models:/models
+#     # command: "ollama pull llama3.2:1b && ollama run llama3.2:1b"
+#     restart: unless-stopped
+#     networks:
+#       - llm-network
+#     cpus: '6'
+#     mem_limit: 12G
+  
+# volumes:
+#   ollama-models:
+
+networks:
+  llm-network:
+    driver: bridge
